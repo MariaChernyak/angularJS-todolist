@@ -54,13 +54,12 @@ app.directive('todoList', function(){
       scope: {
          title: '@'
       },
-      replace: true,
      controller: function($scope){
          $scope.todoList = [];
          this.registerTodo = function(todo){
               $scope.todoList.push(todo);
-          }
-      },
+          }, 
+      }
  
       templateUrl: 'template/todoList.html',
    }
@@ -72,27 +71,11 @@ app.directive('todo', function(){
          scope: {
             title: '@'
          },
-         replace: true,
          templateUrl: 'template/todo.html',
-         // link($scope, element, attr, ctrl){
-         //     ctrl.registerTodo($scope);
-         // },
-         require: '^todoList'
-      }
-   
-})
-app.directive('subtask', function(){
-    return{
-         restrict: 'E',
-         transclude: true,
-         scope: {
-            title: '@'
-         },
-         replace: true,
-         templateUrl: 'template/subtask.html',
          link($scope, element, attr, ctrl){
              ctrl.registerTodo($scope);
          },
          require: '^todoList'
       }
+   }
 })
